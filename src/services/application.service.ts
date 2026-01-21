@@ -1,5 +1,5 @@
 import { apiClient } from '@/lib/api-client';
-import { Application, CreateApplicationData, ApplicationFilters, PaginationParams, PaginatedResponse } from '@/types';
+import { Application, CreateApplicationData, ApplicationFilters, PaginationParams, PaginatedResponse, ApplicationStatus } from '@/types';
 
 export class ApplicationService {
   private static readonly BASE_URL = '/applications';
@@ -46,5 +46,59 @@ export class ApplicationService {
       // If we can't check, assume no application exists
       return false;
     }
+  }
+
+  // Company-specific methods
+
+  /**
+   * Get all applications for company's jobs
+   */
+  static async getCompanyApplications(
+    filters: ApplicationFilters = {},
+    pagination: PaginationParams = {}
+  ): Promise<PaginatedResponse<Application>> {
+    const params = new URLSearchParams();
+    
+    // Add pagination params
+    if (pagination.page) params.append('page', pagination.page.toString());
+    if (pagination.limit) params.append('limit', pagination.limit.toString());
+    
+    // Add filter params
+    if (filters.status) params.append('status', filters.status);
+
+    const queryString = params.toString();
+    const url = queryString ? `/companies/applications?${queryString}` : '/companies/applications';
+    
+    return await apiClient.get<PaginatedResponse<Application>>(url);
+  }
+
+  /**
+   * Get applications for a specific job
+   */
+  static async getJobApplications(
+    jobId: string,
+    filters: ApplicationFilters = {},
+    pagination: PaginationParams = {}
+  ): Promise<PaginatedResponse<Application>> {
+    const params = new URLSearchParams();
+    
+    // Add pagination params
+    if (pagination.page) params.append('page', pagination.page.toString());
+    if (pagination.limit) params.append('limit', pagination.limit.toString());
+    
+    // Add filter params
+    if (filters.status) params.append('status', filters.status);
+
+    const queryString = params.toString();
+    const url = queryString ? `/jobs/${jobId}/applications?${queryString}` : `/jobs/${jobId}/applications`;
+    
+    return await apiClient.get<PaginatedResponse<Application>>(url);
+  }
+
+  /**
+   * Update application status (company only)
+   */
+  static async updateApplicationStatus(applicationId: string, status: ApplicationStatus): Promise<Application> {
+    return await apiClient.put<Application>(`${this.BASE_URL}/${applicationId}/status`, { status });
   }
 }

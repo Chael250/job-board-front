@@ -29,6 +29,19 @@ export interface Job {
   closedAt?: string;
 }
 
+export interface CreateJobData {
+  title: string;
+  description: string;
+  requirements?: string;
+  location: string;
+  employmentType: EmploymentType;
+  salaryMin?: number;
+  salaryMax?: number;
+  salaryCurrency?: string;
+}
+
+export interface UpdateJobData extends Partial<CreateJobData> {}
+
 export interface JobFilters {
   location?: string;
   employmentType?: EmploymentType;

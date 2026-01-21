@@ -19,6 +19,16 @@ export interface Application {
     };
   };
   jobSeekerId: string;
+  jobSeeker?: {
+    id: string;
+    profile: {
+      firstName: string;
+      lastName: string;
+      phone?: string;
+      location?: string;
+      resumeUrl?: string;
+    };
+  };
   status: ApplicationStatus;
   coverLetter?: string;
   resumeUrl?: string;
