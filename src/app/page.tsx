@@ -5,14 +5,6 @@ import { AuthStatus } from '@/components/auth/auth-status';
 export default function Home() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50">
-      {/* Header with auth status */}
-      <header className="bg-white shadow-sm border-b border-secondary-200">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-primary-900">Job Board</h1>
-          <AuthStatus />
-        </div>
-      </header>
-
       <div className="container mx-auto px-4 py-16">
         <div className="text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-primary-900 mb-6">

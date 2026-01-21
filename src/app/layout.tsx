@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/contexts/auth.context";
+import { MainNavigation } from "@/components/navigation/main-nav";
+import { AuthChecker } from "@/components/auth/auth-checker";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -28,11 +30,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={inter.variable}>
-      <body className="font-sans antialiased min-h-screen bg-background text-foreground">
+      <body className="font-sans antialiased min-h-screen bg-secondary-50 text-secondary-900">
         <AuthProvider>
-          <div id="root" className="min-h-screen">
-            {children}
-          </div>
+          <AuthChecker>
+            <div id="root" className="min-h-screen flex flex-col">
+              <MainNavigation />
+              <main className="flex-1">
+                {children}
+              </main>
+            </div>
+          </AuthChecker>
         </AuthProvider>
       </body>
     </html>
