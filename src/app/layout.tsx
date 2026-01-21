@@ -2,8 +2,11 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/contexts/auth.context";
+import { ToastProvider } from "@/contexts/toast.context";
 import { MainNavigation } from "@/components/navigation/main-nav";
 import { AuthChecker } from "@/components/auth/auth-checker";
+import { ErrorBoundary } from "@/components/ui/error-boundary";
+import { ToastContainer } from "@/components/ui/toast";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -31,16 +34,29 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body className="font-sans antialiased min-h-screen bg-secondary-50 text-secondary-900">
-        <AuthProvider>
-          <AuthChecker>
-            <div id="root" className="min-h-screen flex flex-col">
-              <MainNavigation />
-              <main className="flex-1">
-                {children}
-              </main>
-            </div>
-          </AuthChecker>
-        </AuthProvider>
+        <ErrorBoundary>
+          <ToastProvider>
+            <AuthProvider>
+              <AuthChecker>
+                {/* Skip link for keyboard navigation */}
+                <a 
+                  href="#main-content" 
+                  className="skip-link"
+                >
+                  Skip to main content
+                </a>
+                
+                <div id="root" className="min-h-screen flex flex-col">
+                  <MainNavigation />
+                  <main id="main-content" className="flex-1" tabIndex={-1}>
+                    {children}
+                  </main>
+                </div>
+                <ToastContainer />
+              </AuthChecker>
+            </AuthProvider>
+          </ToastProvider>
+        </ErrorBoundary>
       </body>
     </html>
   );

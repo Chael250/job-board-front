@@ -28,9 +28,12 @@ export default function AdminDashboard() {
             <p className="text-secondary-600 mb-4">
               View and manage user accounts and permissions.
             </p>
-            <button className="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+            <a
+              href="/admin/users"
+              className="inline-block bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors"
+            >
               Manage Users
-            </button>
+            </a>
           </div>
 
           <div className="bg-white p-6 rounded-lg shadow-sm border border-secondary-200">
@@ -40,9 +43,12 @@ export default function AdminDashboard() {
             <p className="text-secondary-600 mb-4">
               Review and moderate job listings for compliance.
             </p>
-            <button className="bg-secondary-600 hover:bg-secondary-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+            <a
+              href="/admin/jobs"
+              className="inline-block bg-secondary-600 hover:bg-secondary-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors"
+            >
               Moderate Jobs
-            </button>
+            </a>
           </div>
 
           <div className="bg-white p-6 rounded-lg shadow-sm border border-secondary-200">
@@ -52,9 +58,12 @@ export default function AdminDashboard() {
             <p className="text-secondary-600 mb-4">
               View system audit logs and security events.
             </p>
-            <button className="bg-secondary-600 hover:bg-secondary-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+            <a
+              href="/admin/audit-logs"
+              className="inline-block bg-secondary-600 hover:bg-secondary-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors"
+            >
               View Logs
-            </button>
+            </a>
           </div>
         </div>
       </div>

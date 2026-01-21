@@ -78,6 +78,10 @@ const config: Config = {
         '18': '4.5rem',
         '88': '22rem',
       },
+      screens: {
+        'xs': '475px',
+        '3xl': '1600px',
+      },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
         'slide-up': 'slideUp 0.3s ease-out',
