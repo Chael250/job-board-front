@@ -14,9 +14,12 @@ export default function Home() {
             Connect with top companies and discover opportunities that match your skills and aspirations.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-primary-600 hover:bg-primary-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+            <a 
+              href="/jobs"
+              className="inline-block bg-primary-600 hover:bg-primary-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
+            >
               Browse Jobs
-            </button>
+            </a>
             <button className="border border-primary-600 text-primary-600 hover:bg-primary-50 px-8 py-3 rounded-lg font-semibold transition-colors">
               Post a Job
             </button>
